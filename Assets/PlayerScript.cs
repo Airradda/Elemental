@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     CursorLockMode MouseLock;
     int HP = 100;
     bool Alive = true;
+	bool right = true;
     //private HealthBarScript HealthBar;
 
     private void Die()
@@ -51,17 +52,26 @@ public class PlayerScript : MonoBehaviour
                 MoveSpeed = 1f;
             }
             transform.Translate(((MoveSpeed + 1) * Input.GetAxis("Horizontal")) * Time.deltaTime, Input.GetAxis("Jump") / 4f, ((MoveSpeed + 1) * Input.GetAxis("Vertical") * Time.deltaTime));
-            transform.Rotate(0, Rotate, 0);
-        }
+			if((Input.GetAxis("Horizontal") > 0) && (right == false))
+			{
+				right = true;
+				transform.Rotate(0, 180, 0);
+			}
+			else if((Input.GetAxis("Horizontal") < 0) && (right == true))
+			{
+				right = false;
+				transform.Rotate(0, 180, 0);
+			}
+		}
     }
-    private void OnCollisionEnter2D(Collision Collision)
+    private void OnCollisionEnter2D(Collision2D Collision)
     {
         if (Collision.gameObject.tag != "nocollide")
         {
             MoveSpeed = 0.0f;
         }
     }
-    private void OnCollisionExit2D(Collision Collision)
+    private void OnCollisionExit2D(Collision2D Collision)
     {
         if (Collision.gameObject.tag == "nocollide")
         {
