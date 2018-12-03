@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlayerScript : MonoBehaviour
+public class Player2Script : MonoBehaviour
 {
     // Use this for initialization
     public float MoveSpeed;
@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (Alive)
         {
-            if (Input.GetKey("left shift"))
+            if (Input.GetKey("right shift"))
             {
                 MoveSpeed = 2f;
             }
@@ -48,7 +48,7 @@ public class PlayerScript : MonoBehaviour
             {
                 MoveSpeed = 1f;
             }
-            transform.Translate(((MoveSpeed + 1) * Input.GetAxis("Horizontal")) * Time.deltaTime, Input.GetAxis("Jump") / 4f, ((MoveSpeed + 1) * Input.GetAxis("Vertical") * Time.deltaTime));
+            transform.Translate(((MoveSpeed + 1) * Input.GetAxis("Horizontal2")) * Time.deltaTime, Input.GetAxis("Jump2") / 4f, ((MoveSpeed + 1) * Input.GetAxis("Vertical2") * Time.deltaTime));
 		}
     }
     private void OnCollisionEnter2D(Collision2D Collision)
