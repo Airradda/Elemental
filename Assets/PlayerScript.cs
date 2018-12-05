@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     public float MoveSpeed;
     public float Rotate;
+    public Rigidbody2D Fire;
     int HP = 100;
     bool Alive = true;
     //private HealthBarScript HealthBar;
@@ -32,7 +33,7 @@ public class PlayerScript : MonoBehaviour
     private
     void Start()
     {
-        MoveSpeed = 1f;
+        MoveSpeed = 10f;
         //HealthBar = GameObject.Find("Health Bar").GetComponent<HealthBarScript>();
     }
     // Update is called once per frame
@@ -42,13 +43,20 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKey("left shift"))
             {
-                MoveSpeed = 2f;
+                MoveSpeed = 20f;
             }
             else
             {
-                MoveSpeed = 1f;
+                MoveSpeed = 10f;
             }
             transform.Translate(((MoveSpeed + 1) * Input.GetAxis("Horizontal")) * Time.deltaTime, Input.GetAxis("Jump") / 4f, ((MoveSpeed + 1) * Input.GetAxis("Vertical") * Time.deltaTime));
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Rigidbody2D clone;
+                clone = Instantiate(Fire, transform.position, transform.rotation);
+                clone.velocity = transform.TransformDirection(Vector3.forward * 10);
+            }
 		}
     }
     private void OnCollisionEnter2D(Collision2D Collision)
@@ -62,7 +70,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (Collision.gameObject.tag == "nocollide")
         {
-            MoveSpeed = 1f;
+            MoveSpeed = 10f;
         }
     }
 }
