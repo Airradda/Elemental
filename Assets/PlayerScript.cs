@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
     private
     void Start()
     {
-        MoveSpeed = 1f;
+        MoveSpeed = 10f;
         //HealthBar = GameObject.Find("Health Bar").GetComponent<HealthBarScript>();
     }
     // Update is called once per frame
@@ -42,11 +42,11 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKey("left shift"))
             {
-                MoveSpeed = 2f;
+                MoveSpeed = 20f;
             }
             else
             {
-                MoveSpeed = 1f;
+                MoveSpeed = 10f;
             }
             transform.Translate(((MoveSpeed + 1) * Input.GetAxis("Horizontal")) * Time.deltaTime, Input.GetAxis("Jump") / 4f, ((MoveSpeed + 1) * Input.GetAxis("Vertical") * Time.deltaTime));
 		}
